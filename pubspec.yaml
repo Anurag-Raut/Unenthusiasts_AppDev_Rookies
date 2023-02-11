@@ -43,6 +43,11 @@ dependencies:
   sliding_up_panel: ^2.0.0+1
   firebase_core: ^2.5.0
   firebase_auth: ^4.2.6
+  font_awesome_flutter: ^10.4.0
+  hidden_drawer_menu: ^3.0.1
+  validate: ^1.7.0
+  geolocator: ^9.0.2
+  indexed: ^0.0.8
 
 dev_dependencies:
   flutter_test:

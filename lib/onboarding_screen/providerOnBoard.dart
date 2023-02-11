@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:wastenot/customer/customer_dashboard/main_screen.dart';
 
+import '../customer/customer_dashboard/CustomerDrawer.dart';
 import '../customer/customer_dashboard/customer_dashboard.dart';
 import '../customer/customer_dashboard/maps_customer.dart';
-import '../customer/cutomerlogin.dart';
+import '../customer/customer_login/cutomerlogin.dart';
 class Third_screen extends StatefulWidget {
   const Third_screen({super.key});
 
@@ -48,7 +50,7 @@ class _Third_screenState extends State<Third_screen> {
             onPressed: () {
               Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => CustomerDashboard()),
+                      MaterialPageRoute(builder: (context) => CustMainScreen()),
                     );
             },
           ),

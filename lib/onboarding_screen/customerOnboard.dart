@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
-import '../customer/cutomerlogin.dart';
+import '../customer/customer_login/cutomerlogin.dart';
 
 class FirstScreen extends StatefulWidget {
   const FirstScreen({super.key});

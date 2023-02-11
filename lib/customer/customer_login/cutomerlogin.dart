@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
 
-import 'components/my_button.dart';
-import 'components/my_textfield.dart';
-import 'components/square_tile.dart';
+import '../components/my_button.dart';
+import '../components/my_textfield.dart';
+import '../components/square_tile.dart';
+import 'customer_sign_up.dart';
 
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});
@@ -13,7 +14,9 @@ class LoginPage extends StatelessWidget {
   final passwordController = TextEditingController();
 
   // sign user in method
-  void signUserIn() {}
+  void signUserIn() {
+    
+  }
 
   @override
   Widget build(BuildContext context) {
