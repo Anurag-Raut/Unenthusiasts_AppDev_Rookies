@@ -56,8 +56,7 @@ class _OnBoardingState extends State<OnBoarding> {
         body: AnimatedBuilder(
           animation: pageController,
           builder: (context, child) {
-            final color =
-                pageController.hasClients ? pageController.page! / 2 : .0;
+            final color = pageController.hasClients ? pageController.page! / 2 : .0;
 
             return DecoratedBox(
               decoration: BoxDecoration(
