@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "988360871501",
-    "project_id": "foodsurplus1-4f4e5",
-    "storage_bucket": "foodsurplus1-4f4e5.appspot.com"
+    "project_number": "467903448150",
+    "project_id": "foodsurplus",
+    "storage_bucket": "foodsurplus.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:988360871501:android:2cc93a4d0feaaa08671604",
+        "mobilesdk_app_id": "1:467903448150:android:b5b5f54d5654f2a647e7f7",
         "android_client_info": {
           "package_name": "com.example.wastenot"
         }
       },
       "oauth_client": [
         {
-          "client_id": "988360871501-4akkjgk7ingo5vl3b3v7orf0hih0ad23.apps.googleusercontent.com",
+          "client_id": "467903448150-0ji95t954uf6q9j5s362g3e2dtb2crju.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAD-4GmSh4SjOVKalLMYE2spDbC-osNQ6o"
+          "current_key": "AIzaSyAlafeIE4_iJLU3Cq0E3C8F9e5Mwh4R4PM"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "988360871501-4akkjgk7ingo5vl3b3v7orf0hih0ad23.apps.googleusercontent.com",
+              "client_id": "467903448150-0ji95t954uf6q9j5s362g3e2dtb2crju.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

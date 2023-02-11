@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:wastenot/customer/customer_dashboard/main_screen.dart';
 
-import '../customer/customer_dashboard/CustomerDrawer.dart';
 import '../customer/customer_dashboard/customer_dashboard.dart';
+
+import '../provider/pages/login/auth_page.dart';
 import '../customer/customer_dashboard/maps_customer.dart';
-import '../customer/customer_login/cutomerlogin.dart';
+
 class Third_screen extends StatefulWidget {
   const Third_screen({super.key});
 
@@ -19,52 +20,35 @@ class _Third_screenState extends State<Third_screen> {
     return Container(
       color: Colors.transparent,
       child: Column(
-
         children: [
-
-          
-         
-
-           Lottie.asset('assets/providerLottie.json'),
-            SizedBox( 
-            height: MediaQuery.of(context).size.height * 0.1,),
-
-           Text("Provider",
-            style: TextStyle(fontWeight: FontWeight.bold,
-            fontSize: 50
-            
-            ),
-           
-           
-           ),
-           SizedBox( 
-            height: MediaQuery.of(context).size.height * 0.05,),
-           ElevatedButton(
+          Lottie.asset('assets/providerLottie.json'),
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.1,
+          ),
+          Text(
+            "Provider",
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 50),
+          ),
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.05,
+          ),
+          ElevatedButton(
             style: const ButtonStyle(
               backgroundColor: MaterialStatePropertyAll<Color>(Colors.white),
             ),
             child: const Text(
               'Provider',
-              style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),
+              style:
+                  TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
             ),
             onPressed: () {
-              Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => CustMainScreen()),
-                    );
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => PAuthPage()));
+              // ...
             },
           ),
-
-
-
-
         ],
-
-
-
       ),
-      
-
     );
   }
 }

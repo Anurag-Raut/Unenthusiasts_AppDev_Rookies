@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:wastenot/customer/customer_dashboard/customer_dashboard.dart';
 
@@ -17,12 +18,26 @@ class CustMainScreen extends StatefulWidget {
 }
 
 class _CustMainScreenState extends State<CustMainScreen> {
+  final user = FirebaseAuth.instance.currentUser!;
+
+  // sign user out method
+  void signUserOut() {
+    FirebaseAuth.instance.signOut();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('title')),
+      appBar: AppBar(title: Text('title'),
+      
+      actions: [
+          IconButton(
+            onPressed: signUserOut,
+            icon: Icon(Icons.logout),
+          )
+        ],
+      ),
       body: const Center(
-        child: Text('My Page!'),
+        
       ),
       drawer: Drawer(
         // Add a ListView to the drawer. This ensures the user can scroll

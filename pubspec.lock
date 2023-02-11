@@ -57,6 +57,30 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.1.1"
+  cloud_firestore:
+    dependency: "direct main"
+    description:
+      name: cloud_firestore
+      sha256: "9e775f9df26a165444bd5240f70bfee6f11b35c5e913e93ed4b06bf50b231325"
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.3.2"
+  cloud_firestore_platform_interface:
+    dependency: transitive
+    description:
+      name: cloud_firestore_platform_interface
+      sha256: ab35c068896ff769ce7e8de8198228d512e7f056fc8f26b2ff53ea3f97c8545f
+      url: "https://pub.dev"
+    source: hosted
+    version: "5.10.2"
+  cloud_firestore_web:
+    dependency: transitive
+    description:
+      name: cloud_firestore_web
+      sha256: b7b52c2ad50d1105f2e0585a34288da415cf9d1037470985c7c57cce7b06d95f
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.2.2"
   collection:
     dependency: transitive
     description:
@@ -105,6 +129,30 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.3.1"
+  firebase_analytics:
+    dependency: "direct main"
+    description:
+      name: firebase_analytics
+      sha256: e9adb135316ef263d17442f558e4f9e5cb5654e2a69c972792fe9dea51bfb0d8
+      url: "https://pub.dev"
+    source: hosted
+    version: "10.1.1"
+  firebase_analytics_platform_interface:
+    dependency: transitive
+    description:
+      name: firebase_analytics_platform_interface
+      sha256: "59fadd29bb605d5607b942e79a415b881bd0f7b8ebbce8e9a97735015d27a3d0"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.3.18"
+  firebase_analytics_web:
+    dependency: transitive
+    description:
+      name: firebase_analytics_web
+      sha256: "589d04f4342b3a5c4ee1b5d59099b03eeb1732b2c325e0bbe9597669fb75f744"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.5.1+9"
   firebase_auth:
     dependency: "direct main"
     description:
@@ -192,14 +240,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  font_awesome_flutter:
-    dependency: "direct main"
-    description:
-      name: font_awesome_flutter
-      sha256: "959ef4add147753f990b4a7c6cccb746d5792dbdc81b1cde99e62e7edb31b206"
-      url: "https://pub.dev"
-    source: hosted
-    version: "10.4.0"
   geolocator:
     dependency: "direct main"
     description:
@@ -312,14 +352,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.0.13"
-  indexed:
-    dependency: "direct main"
-    description:
-      name: indexed
-      sha256: "3509a2a7ad1dbd7280da377661129e0b0a2f5e8d6d75f10400f07397f95324df"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.0.8"
   intl:
     dependency: transitive
     description:
@@ -509,14 +541,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.4"
-  validate:
-    dependency: "direct main"
-    description:
-      name: validate
-      sha256: e454e9357766615ecedd8dc8ffd1e5a80d54f53d5bf878fee9d5143cb0f57f4d
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.7.0"
   vector_math:
     dependency: transitive
     description:
