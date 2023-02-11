@@ -49,6 +49,7 @@ dependencies:
   hidden_drawer_menu: ^3.0.1
   file_picker: ^5.2.5
   firebase_storage: ^11.0.11
+  uuid: ^3.0.7
 
 dev_dependencies:
   flutter_test:
