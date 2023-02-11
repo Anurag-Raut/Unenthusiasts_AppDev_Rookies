@@ -10,8 +10,9 @@ import 'package:wastenot/provider/components/square_tile.dart';
 import 'package:wastenot/provider/pages/login/providelogin.dart';
 
 class ARegisterPage extends StatefulWidget {
-  
-  const ARegisterPage({super.key, });
+  const ARegisterPage({
+    super.key,
+  });
 
   @override
   State<ARegisterPage> createState() => _RegisterPageState();
@@ -128,23 +129,7 @@ class _RegisterPageState extends State<ARegisterPage> {
                   ),
                 ),
 
-                const SizedBox(height: 50),
-
-                // google + apple sign in buttons
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
-                    // google button
-                    SquareTile(imagePath: 'assets/images/google.png'),
-
-                    SizedBox(width: 25),
-
-                    // apple button
-                    // SquareTile(imagePath: 'assets/images/apple.png')
-                  ],
-                ),
-
-                const SizedBox(height: 50),
+                const SizedBox(height: 30),
 
                 // not a member? register now
                 Row(
@@ -163,8 +148,6 @@ class _RegisterPageState extends State<ARegisterPage> {
                                   builder: (context) => ALoginPage()));
                         },
                         child: const Center(child: Text("Login Here"))),
-                    
-                    
                   ],
                 ),
                 SizedBox(
