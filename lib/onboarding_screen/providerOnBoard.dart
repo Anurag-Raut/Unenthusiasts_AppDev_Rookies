@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+
+import '../customer/customer_dashboard/customer_dashboard.dart';
+import '../customer/customer_dashboard/maps_customer.dart';
+import '../customer/cutomerlogin.dart';
 class Third_screen extends StatefulWidget {
   const Third_screen({super.key});
 
@@ -42,7 +46,10 @@ class _Third_screenState extends State<Third_screen> {
               style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),
             ),
             onPressed: () {
-              // ...
+              Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => CustomerDashboard()),
+                    );
             },
           ),
 
