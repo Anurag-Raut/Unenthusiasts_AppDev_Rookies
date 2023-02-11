@@ -47,10 +47,15 @@ android {
         applicationId "com.example.wastenot"
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
+<<<<<<< HEAD
+        minSdkVersion 19 
+=======
         minSdkVersion 20        
+>>>>>>> 39ec72f2f2f420cf7d7f82e1084f10a693750cc6
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
+        multiDexEnabled true
     }
 
     buildTypes {

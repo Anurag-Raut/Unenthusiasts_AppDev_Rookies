@@ -1,92 +1,105 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:wastenot/admin/pages/login/adminlogin.dart';
+import 'package:wastenot/customer/components/my_textfield.dart';
+import 'package:wastenot/customer/components/signUp_button.dart';
+import 'package:wastenot/customer/pages/login/cutomerlogin.dart';
+import 'package:wastenot/provider/components/my_button.dart';
+import 'package:wastenot/provider/components/square_tile.dart';
+import 'package:wastenot/provider/pages/login/providelogin.dart';
 
+class ARegisterPage extends StatefulWidget {
+  
+  const ARegisterPage({super.key, });
 
-import 'components/my_button.dart';
-import 'components/my_textfield.dart';
-import 'components/square_tile.dart';
+  @override
+  State<ARegisterPage> createState() => _RegisterPageState();
+}
 
-class LoginPage extends StatelessWidget {
-  LoginPage({super.key});
-
+class _RegisterPageState extends State<ARegisterPage> {
   // text editing controllers
-  final usernameController = TextEditingController();
+  final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
-  // sign user in method
-  void signUserIn() {}
+  Future signUp() async {
+    await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: emailController.text, password: passwordController.text);
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[300],
-      body: SingleChildScrollView (
+      body: SingleChildScrollView(
         child: SafeArea(
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const SizedBox(height: 50),
-      
+
                 // logo
                 const Icon(
                   Icons.lock,
                   size: 100,
                 ),
-      
+
                 const SizedBox(height: 50),
-      
+
                 // welcome back, you've been missed!
                 Text(
-                  'Welcome back you\'ve been missed!',
+                  'Register below with your details!',
                   style: TextStyle(
                     color: Colors.grey[700],
                     fontSize: 16,
                   ),
                 ),
-      
+
                 const SizedBox(height: 25),
-      
-                // username textfield
+
+                // email textfield
                 MyTextField(
-                  controller: usernameController,
-                  hintText: 'Username',
+                  controller: emailController,
+                  hintText: 'Email',
                   obscureText: false,
                 ),
-      
+
                 const SizedBox(height: 10),
-      
+
                 // password textfield
                 MyTextField(
                   controller: passwordController,
                   hintText: 'Password',
                   obscureText: true,
                 ),
-      
+
                 const SizedBox(height: 10),
-      
+
                 // forgot password?
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      Text(
-                        'Forgot Password?',
-                        style: TextStyle(color: Colors.grey[600]),
+                      GestureDetector(
+                        child: Text(
+                          'Forgot Password?',
+                          style: TextStyle(color: Colors.grey[600]),
+                        ),
                       ),
                     ],
                   ),
                 ),
-      
+
                 const SizedBox(height: 25),
-      
-                // sign in button
-                MyButton(
-                  onTap: signUserIn,
+
+                SignUpButton(
+                  onTap: signUp,
                 ),
-      
+
                 const SizedBox(height: 50),
-      
+
                 // or continue with
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25.0),
@@ -114,42 +127,48 @@ class LoginPage extends StatelessWidget {
                     ],
                   ),
                 ),
-      
+
                 const SizedBox(height: 50),
-      
+
                 // google + apple sign in buttons
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: const [
                     // google button
                     SquareTile(imagePath: 'assets/images/google.png'),
-      
-                   
-      
+
+                    SizedBox(width: 25),
+
                     // apple button
-                   
+                    // SquareTile(imagePath: 'assets/images/apple.png')
                   ],
                 ),
-      
+
                 const SizedBox(height: 50),
-      
+
                 // not a member? register now
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      'Not a member?',
+                      'Already a member?',
                       style: TextStyle(color: Colors.grey[700]),
                     ),
                     const SizedBox(width: 4),
-                    const Text(
-                      'Register now',
-                      style: TextStyle(
-                        color: Colors.blue,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
+                    TextButton(
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => ALoginPage()));
+                        },
+                        child: const Center(child: Text("Login Here"))),
+                    
+                    
                   ],
+                ),
+                SizedBox(
+                  height: 40,
                 )
               ],
             ),
