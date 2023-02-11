@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:wastenot/customer/components/my_button.dart';
 import 'package:wastenot/customer/components/my_textfield.dart';
 import 'package:wastenot/customer/components/square_tile.dart';
-import 'package:wastenot/customer/pages/signup/customersignup.dart';
+
 import 'package:wastenot/provider/pages/signup/providersignup.dart';
 
 class ProviderLoginPage extends StatefulWidget {

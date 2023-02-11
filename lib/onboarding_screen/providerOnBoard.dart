@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:wastenot/provider/pages/login/auth_page.dart';
-import 'package:wastenot/provider/pages/login/providelogin.dart';
+import 'package:wastenot/customer/customer_dashboard/main_screen.dart';
+
+import '../customer/customer_dashboard/customer_dashboard.dart';
+
+import '../provider/pages/login/auth_page.dart';
+import '../customer/customer_dashboard/maps_customer.dart';
 
 class Third_screen extends StatefulWidget {
   const Third_screen({super.key});

@@ -25,7 +25,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: HomeScreen1(key: key),
+      home: OnBoarding(
+        key: key,
+      ),
     );
   }
 }

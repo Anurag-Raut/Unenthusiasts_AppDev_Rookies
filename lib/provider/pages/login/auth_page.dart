@@ -1,8 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:wastenot/customer/pages/login/cutomerlogin.dart';
-import 'package:wastenot/customer/pages/login/home_page.dart';
-import 'package:wastenot/customer/pages/signup/customersignup.dart';
+
 import 'package:wastenot/provider/pages/login/home_page.dart';
 import 'package:wastenot/provider/pages/login/providelogin.dart';
 

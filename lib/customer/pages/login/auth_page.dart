@@ -4,6 +4,9 @@ import 'package:wastenot/customer/pages/login/cutomerlogin.dart';
 import 'package:wastenot/customer/pages/login/home_page.dart';
 import 'package:wastenot/customer/pages/signup/customersignup.dart';
 
+import '../../customer_dashboard/customer_dashboard.dart';
+import '../../customer_dashboard/main_screen.dart';
+
 class AuthPage extends StatefulWidget {
   const AuthPage({super.key});
 
@@ -20,7 +23,7 @@ class _AuthPageState extends State<AuthPage> {
         builder: (context, snapshot) {
           // user is logged in
           if (snapshot.hasData) {
-            return HomePage();
+            return CustMainScreen();
           }
 
           // user is NOT logged in

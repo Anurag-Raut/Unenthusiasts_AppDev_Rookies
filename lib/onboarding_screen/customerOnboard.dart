@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
-import 'package:wastenot/customer/pages/login/auth_page.dart';
+import '../customer/pages/login/auth_page.dart';
 
-import '../customer/pages/login/cutomerlogin.dart';
+
 
 class FirstScreen extends StatefulWidget {
   const FirstScreen({super.key});
