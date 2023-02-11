@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:wastenot/customer/pages/login/cutomerlogin.dart';
 import 'package:wastenot/customer/pages/login/home_page.dart';
 import 'package:wastenot/customer/pages/signup/customersignup.dart';
+import 'package:wastenot/provider/pages/login/home_page.dart';
+import 'package:wastenot/provider/pages/login/providelogin.dart';
 
 class PAuthPage extends StatefulWidget {
   const PAuthPage({super.key});
@@ -23,12 +25,12 @@ class _AuthPageState extends State<PAuthPage> {
         builder: (context, snapshot) {
  // user is logged in
           if (snapshot.hasData) {
-            return HomePage();
+            return PHomePage();
           }
 
           // user is NOT logged in
           else {
-            return LoginPage();
+            return ProviderLoginPage();
           }
         },
       ),

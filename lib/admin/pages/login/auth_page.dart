@@ -1,5 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:wastenot/admin/pages/login/adminlogin.dart';
+import 'package:wastenot/admin/pages/login/home_page.dart';
 import 'package:wastenot/customer/pages/login/cutomerlogin.dart';
 import 'package:wastenot/customer/pages/login/home_page.dart';
 import 'package:wastenot/customer/pages/signup/customersignup.dart';
@@ -20,12 +22,12 @@ class _AuthPageState extends State<AAuthPage> {
         builder: (context, snapshot) {
           // user is logged in
           if (snapshot.hasData) {
-            return HomePage();
+            return AHomePage();
           }
 
           // user is NOT logged in
           else {
-            return LoginPage();
+            return ALoginPage();
           }
         },
       ),
