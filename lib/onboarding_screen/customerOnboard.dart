@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
+import '../customer/cutomerlogin.dart';
+
 class FirstScreen extends StatefulWidget {
   const FirstScreen({super.key});
 
@@ -34,7 +36,10 @@ class _FirstScreenState extends State<FirstScreen> {
               style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),
             ),
             onPressed: () {
-              // ...
+               Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => LoginPage()),
+                    );
             },
           ),
         ],
