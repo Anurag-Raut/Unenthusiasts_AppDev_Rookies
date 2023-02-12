@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:wastenot/provider/pages/login/home_page.dart';
 import 'package:wastenot/provider/pages/login/providelogin.dart';
 
+import '../landing_page/landingpage.dart';
+
 class PAuthPage extends StatefulWidget {
   const PAuthPage({super.key});
 
@@ -23,7 +25,7 @@ class _AuthPageState extends State<PAuthPage> {
         builder: (context, snapshot) {
  // user is logged in
           if (snapshot.hasData) {
-            return PHomePage();
+            return HomeScreen1();
           }
 
           // user is NOT logged in

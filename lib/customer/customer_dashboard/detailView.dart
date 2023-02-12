@@ -5,7 +5,8 @@ import 'package:flutter/material.dart';
 
 class DetailView extends StatelessWidget {
    final documentId;
-  const DetailView({super.key, required this.documentId});
+   final imageurl;
+  const DetailView({super.key, required this.documentId,required this.imageurl});
  
   @override
   Widget build(BuildContext context) {
@@ -31,9 +32,12 @@ class DetailView extends StatelessWidget {
               children: [
                  Center(child: Text('Name ${data['_foodName']}')),
                   SizedBox(height: 20,),
+              Image.network(imageurl, width: 100,
+                                        height: 100,),
                 Center(child: Text('Description =  ${data['_Description']}')),
                    SizedBox(height: 20,),
                 Center(child: Text('age of food =  ${data['_ageFood']}')),
+
                 SizedBox(height: 20,),
                 Center(child: Text('expiry Date =  ${data['_expiryFood']}')),
 

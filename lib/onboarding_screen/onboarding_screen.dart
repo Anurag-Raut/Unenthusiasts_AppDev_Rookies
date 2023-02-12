@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:wastenot/onboarding_screen/adminOnBoard.dart';
+
 import 'package:wastenot/onboarding_screen/providerOnBoard.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'customerOnboard.dart';
@@ -69,7 +69,7 @@ class _OnBoardingState extends State<OnBoarding> {
             controller: pageController,
             children: const [
               Center(child: FirstScreen()),
-              Center(child: Second_screen()),
+              
               Center(child: Third_screen()),
             ],
           ),
@@ -87,7 +87,7 @@ class _OnBoardingState extends State<OnBoarding> {
               SmoothPageIndicator(
                 
                   controller: pageController, // PageController
-                  count: 3,
+                  count: 2,
                   effect: WormEffect(), // your preferred effect
                   onDotClicked: (index) {}),
             ],

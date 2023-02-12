@@ -7,7 +7,8 @@ class CustomSearchDelegate extends SearchDelegate {
 // Demo list to show querying
   final List<String> searchTerms;
 final List<String> docIds;
-  CustomSearchDelegate({required this.searchTerms,required this.docIds});
+final List<String> images;
+  CustomSearchDelegate({required this.searchTerms,required this.docIds,required this.images});
   
 
   //  CollectionReference users = FirebaseFirestore.instance.collection('food');
@@ -58,7 +59,7 @@ final List<String> docIds;
                             context,
                             MaterialPageRoute(
                                 builder: (context) =>
-                                   DetailView( documentId: docIds[index]),
+                                   DetailView( documentId: docIds[index],imageurl:images[index]),
                           )
         ),
           },
@@ -91,7 +92,7 @@ final List<String> docIds;
                             context,
                             MaterialPageRoute(
                                 builder: (context) =>
-                                   DetailView( documentId: docIds[index]),
+                                   DetailView( documentId: docIds[index],imageurl:images[index]),
                           )
         ),
           },

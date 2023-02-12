@@ -52,6 +52,7 @@ dependencies:
   flutter_rating_bar: ^4.0.1
   flutter_typeahead: ^4.3.3
   uuid: ^3.0.7
+  form_field_validator: ^1.1.0
 
 dev_dependencies:
   flutter_test:

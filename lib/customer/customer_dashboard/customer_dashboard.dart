@@ -4,6 +4,7 @@ import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -74,19 +75,29 @@ class _CustomerDashboardState extends State<CustomerDashboard> {
 
   List<String> name = [];
   List<String> docIds = [];
+  List<String> images = [];
   CollectionReference users = FirebaseFirestore.instance.collection('food');
   Future getDocId() async {
+
     await FirebaseFirestore.instance
         .collection('food')
         .get()
-        .then((snapshot) => snapshot.docs.forEach((element) {
+        .then((snapshot) => snapshot.docs.forEach((element) async {
               // print(element.reference['']);
               docIDs.add(element.reference);
               docIds.add(element.reference.id);
               // name.add(element.data());
               // print(element.data());
               name.add(element.data()['_foodName']);
+
+               images.add( await FirebaseStorage.instance
+        .ref()
+        .child(element.reference.id)
+        .getDownloadURL());
             }));
+
+
+     
   }
 
   @override
@@ -111,7 +122,7 @@ class _CustomerDashboardState extends State<CustomerDashboard> {
                   // delegate to customize the search bar
 
                   delegate:
-                      CustomSearchDelegate(docIds: docIds, searchTerms: name));
+                      CustomSearchDelegate(docIds: docIds, searchTerms: name,images:images));
             },
             icon: const Icon(Icons.search),
           )
@@ -157,7 +168,7 @@ class _CustomerDashboardState extends State<CustomerDashboard> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) =>
-                                    DetailView(documentId: docIDs[index].id)),
+                                    DetailView(documentId: docIDs[index].id,imageurl: images[index],)),
                           )
                         },
                         title: GetData(documentId: docIDs[index].id),

@@ -1,10 +1,11 @@
 import 'dart:io';
-
+import 'package:uuid/uuid.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:form_field_validator/form_field_validator.dart';
 
 class HomeScreen1 extends StatefulWidget {
   // final String foodName;
@@ -22,8 +23,9 @@ class HomeScreen1 extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen1> {
+  var uuid = Uuid().v1();
   final storage = FirebaseStorage.instance;
-
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   final user = FirebaseAuth.instance.currentUser;
   final TextEditingController _foodName = TextEditingController();
   final TextEditingController _ageFood = TextEditingController();
@@ -97,7 +99,7 @@ class _HomeScreenState extends State<HomeScreen1> {
   }
 
   Future uploadFile() async {
-    final path = 'files/user!.uid/${pickedFile!.name}';
+    final path = '${uuid}';
     final file = File(pickedFile!.path!);
     final ref = FirebaseStorage.instance.ref().child(path);
     ref.putFile(file);
@@ -107,7 +109,7 @@ class _HomeScreenState extends State<HomeScreen1> {
 
   Future addFood(String _foodName, String _ageFood, String _expiryFood,
       String _quantity, String _Description) async {
-    await FirebaseFirestore.instance.collection('food').add({
+    await FirebaseFirestore.instance.collection('food').doc(uuid).set({
       '_foodName': _foodName,
       '_ageFood': _ageFood,
       '_expiryFood': _expiryFood,
@@ -119,100 +121,92 @@ class _HomeScreenState extends State<HomeScreen1> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stepper(
-        elevation: 0, //Horizontal Impact
-        // margin: const EdgeInsets.all(20), //vertical impact
-        controlsBuilder: controlBuilders,
-        type: StepperType.horizontal,
-        physics: const ScrollPhysics(),
-        onStepTapped: onStepTapped,
-        onStepContinue: continueStep,
-        onStepCancel: cancelStep,
-        currentStep: currentStep,
-
-        //0, 1, 2
-        steps: [
-          Step(
-              title: const Text('Food Details'),
-              content: Column(
-                children: <Widget>[
-                  TextFormField(
-                    controller: _foodName,
-                    decoration: InputDecoration(
-                      labelText: 'Enter the Food Name',
-                      enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(4))),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 25,
-                  ),
-                  TextFormField(
-                    controller: _ageFood,
-                    decoration: InputDecoration(
-                      labelText: 'Enter the Age of Food',
-                      enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(4))),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 25,
-                  ),
-                  TextFormField(
-                    controller: _expiryFood,
-                    decoration: InputDecoration(
-                      labelText: 'Enter the Expiry Date of Food',
-                      enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(4))),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 25,
-                  ),
-                  TextFormField(
-                    controller: _quantity,
-                    decoration: InputDecoration(
-                      labelText: 'Enter the Quantity of Food',
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(4)),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 25,
-                  ),
-                  TextFormField(
-                    controller: _Description,
-                    decoration: InputDecoration(
-                      labelText: 'Description of Food',
-                      enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(4))),
-                    ),
-                  ),
-                ],
+      body: SingleChildScrollView(
+          child: Form(
+        key: formKey,
+        child: Column(children: [
+          Positioned(
+            top: 150,
+            left: 14,
+            child: Padding(
+              padding: const EdgeInsets.only(top: 100, right: 165),
+              child: Text(
+                "Welcome !",
+                style: TextStyle(
+                    fontSize: 35,
+                    color: Color(0xFF363f93),
+                    fontWeight: FontWeight.w600),
               ),
-              isActive: currentStep >= 0,
-              state:
-                  currentStep >= 0 ? StepState.complete : StepState.disabled),
-          Step(
-            title: const Text('Upload an Image'),
-            content: Column(
-              children: [
-                ElevatedButton(
-                  child: Text('Select File'),
-                  onPressed: selectFile,
-                ),
-                ElevatedButton(
-                  child: Text('Upload File'),
-                  onPressed: uploadFile,
-                ),
-              ],
             ),
-            isActive: currentStep >= 0,
-            state: currentStep >= 1 ? StepState.complete : StepState.disabled,
           ),
-        ],
-      ),
+          SizedBox(
+            height: 25,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 20),
+            child: TextFormField(
+              controller: _foodName,
+              decoration: InputDecoration(
+                labelText: "Enter your name",
+              ),
+           
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 0, right: 25, left: 25),
+            child: TextFormField(
+              controller: _ageFood,
+              decoration: InputDecoration(
+                labelText: "Enter your phone number",
+              ),
+             
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 20, right: 25, left: 25),
+            child: TextFormField(
+              controller: _expiryFood,
+              decoration: InputDecoration(
+                labelText: "Enter your age",
+              ),
+          
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 20, right: 25, left: 25),
+            child: TextFormField(
+              controller: _Description,
+              decoration: InputDecoration(
+                labelText: "Date of Birth[dd/mm/yyyy]",
+              ),
+              
+            ),
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ElevatedButton(
+                  onPressed: () {
+                    selectFile();
+                  },
+                  child: Text("choose file")),
+              ElevatedButton(onPressed: () { uploadFile();}, child: Text("upload file")),
+              ElevatedButton(onPressed: () {addFood(_foodName.text,_ageFood.text,_ageFood.text,_quantity.text,_Description.text);
+            }, child: Text("Save")),
+            ],
+          ),
+        ]),
+      )),
     );
+
+    
   }
 }
+
+
+
+
+
