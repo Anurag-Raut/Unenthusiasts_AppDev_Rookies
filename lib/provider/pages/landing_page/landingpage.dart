@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:lottie/lottie.dart';
 import 'package:uuid/uuid.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:file_picker/file_picker.dart';
@@ -125,29 +126,19 @@ class _HomeScreenState extends State<HomeScreen1> {
           child: Form(
         key: formKey,
         child: Column(children: [
-          Positioned(
-            top: 150,
-            left: 14,
-            child: Padding(
-              padding: const EdgeInsets.only(top: 100, right: 165),
-              child: Text(
-                "Welcome !",
-                style: TextStyle(
-                    fontSize: 35,
-                    color: Color(0xFF363f93),
-                    fontWeight: FontWeight.w600),
-              ),
-            ),
+          Center(
+            child:   Lottie.asset('assets/Pfood2.json',width: 200,height: 200),
           ),
           SizedBox(
-            height: 25,
+            child: Text('Enter food details',style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
+            height: 30,
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 20),
             child: TextFormField(
               controller: _foodName,
               decoration: InputDecoration(
-                labelText: "Enter your name",
+                labelText: "Enter name of food",
               ),
            
             ),
@@ -155,9 +146,9 @@ class _HomeScreenState extends State<HomeScreen1> {
           Padding(
             padding: const EdgeInsets.only(top: 0, right: 25, left: 25),
             child: TextFormField(
-              controller: _ageFood,
+              controller: _quantity,
               decoration: InputDecoration(
-                labelText: "Enter your phone number",
+                labelText: "Enter quantity  of food",
               ),
              
             ),
@@ -167,7 +158,7 @@ class _HomeScreenState extends State<HomeScreen1> {
             child: TextFormField(
               controller: _expiryFood,
               decoration: InputDecoration(
-                labelText: "Enter your age",
+                labelText: "Enter expiry date  of food",
               ),
           
             ),
@@ -177,23 +168,33 @@ class _HomeScreenState extends State<HomeScreen1> {
             child: TextFormField(
               controller: _Description,
               decoration: InputDecoration(
-                labelText: "Date of Birth[dd/mm/yyyy]",
+                labelText: "Enter description  of food",
               ),
               
             ),
           ),
           SizedBox(
+            
             height: 20,
           ),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              ElevatedButton(
+
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                   ElevatedButton(
                   onPressed: () {
                     selectFile();
                   },
-                  child: Text("choose file")),
+                  child: Text("choose photo ")),
               ElevatedButton(onPressed: () { uploadFile();}, child: Text("upload file")),
+
+                ],
+              ),
+              SizedBox(height: 40,),
+             
               ElevatedButton(onPressed: () {addFood(_foodName.text,_ageFood.text,_ageFood.text,_quantity.text,_Description.text);
             }, child: Text("Save")),
             ],
