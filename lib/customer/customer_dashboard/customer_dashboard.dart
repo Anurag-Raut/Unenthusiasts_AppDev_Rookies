@@ -5,6 +5,7 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:geolocator/geolocator.dart';
@@ -69,15 +70,22 @@ class _CustomerDashboardState extends State<CustomerDashboard> {
   static const double fabHeightClosed = 116.0;
   double fabHeight = fabHeightClosed;
   final user = FirebaseAuth.instance.currentUser!;
-  List<DocumentReference<Map<String,dynamic>>> docIDs = [];
+  List<DocumentReference<Map<String, dynamic>>> docIDs = [];
 
+  List<String> name = [];
+  List<String> docIds = [];
+  CollectionReference users = FirebaseFirestore.instance.collection('food');
   Future getDocId() async {
     await FirebaseFirestore.instance
         .collection('food')
         .get()
         .then((snapshot) => snapshot.docs.forEach((element) {
-              print(element.reference);
+              // print(element.reference['']);
               docIDs.add(element.reference);
+              docIds.add(element.reference.id);
+              // name.add(element.data());
+              // print(element.data());
+              name.add(element.data()['_foodName']);
             }));
   }
 
@@ -101,7 +109,9 @@ class _CustomerDashboardState extends State<CustomerDashboard> {
               showSearch(
                   context: context,
                   // delegate to customize the search bar
-                  delegate: CustomSearchDelegate());
+
+                  delegate:
+                      CustomSearchDelegate(docIds: docIds, searchTerms: name));
             },
             icon: const Icon(Icons.search),
           )
@@ -138,25 +148,22 @@ class _CustomerDashboardState extends State<CustomerDashboard> {
                 children: [
                   BarIndicator(),
                   Expanded(
-                      child:ListView.builder(
-                              itemCount: docIDs.length,
-                              itemBuilder: (context, index) {
-                                return ListTile(
-                                  onTap: () => {
-                                     Navigator.push(
-    context,
-    MaterialPageRoute(builder: (context) => DetailView(documentId:docIDs[index].id )),
-  )
-                                    
-                                    },
-                                  title: GetData(documentId:docIDs[index].id),
-                                );
-                              },
-
-                      )
-                  )
-                            
-                          
+                      child: ListView.builder(
+                    itemCount: docIDs.length,
+                    itemBuilder: (context, index) {
+                      return ListTile(
+                        onTap: () => {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    DetailView(documentId: docIDs[index].id)),
+                          )
+                        },
+                        title: GetData(documentId: docIDs[index].id),
+                      );
+                    },
+                  ))
                 ],
               ),
             ),
