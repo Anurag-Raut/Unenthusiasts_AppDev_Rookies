@@ -45,11 +45,7 @@ class CustomerMapState extends State<CustomerMap> {
           zoom: 11.0,
         ),
       ),
-       floatingActionButton: FloatingActionButton.extended(
-        onPressed: (){},
-        label: const Text('To the lake!'),
-        icon: const Icon(Icons.directions_boat),
-      ),
+      
      
     );
   }

@@ -2,11 +2,15 @@
 
 import 'dart:async';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:wastenot/customer/customer_dashboard/custom_search_delegate.dart';
+import 'package:wastenot/customer/customer_dashboard/detailView.dart';
+import 'firestoreData.dart';
 import 'maps_customer.dart';
 
 Future<Position> _determinePosition() async {
@@ -64,17 +68,29 @@ class _CustomerDashboardState extends State<CustomerDashboard> {
 
   static const double fabHeightClosed = 116.0;
   double fabHeight = fabHeightClosed;
+  final user = FirebaseAuth.instance.currentUser!;
+  List<DocumentReference<Map<String,dynamic>>> docIDs = [];
 
+  Future getDocId() async {
+    await FirebaseFirestore.instance
+        .collection('food')
+        .get()
+        .then((snapshot) => snapshot.docs.forEach((element) {
+              print(element.reference);
+              docIDs.add(element.reference);
+            }));
+  }
 
-
-
-
-
+  @override
+  void initState() {
+    getDocId();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
+      appBar: AppBar(
         title: const Text(
           "Waste Not",
         ),
@@ -83,10 +99,9 @@ class _CustomerDashboardState extends State<CustomerDashboard> {
             onPressed: () {
               // method to show the search bar
               showSearch(
-                context: context,
-                // delegate to customize the search bar
-                delegate: CustomSearchDelegate()
-              );
+                  context: context,
+                  // delegate to customize the search bar
+                  delegate: CustomSearchDelegate());
             },
             icon: const Icon(Icons.search),
           )
@@ -120,14 +135,28 @@ class _CustomerDashboardState extends State<CustomerDashboard> {
               ),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
-                children: const [
+                children: [
                   BarIndicator(),
-                  Center(
-                    child: Text(
-                      "This is the sliding Widget",
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  ),
+                  Expanded(
+                      child:ListView.builder(
+                              itemCount: docIDs.length,
+                              itemBuilder: (context, index) {
+                                return ListTile(
+                                  onTap: () => {
+                                     Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => DetailView(documentId:docIDs[index].id )),
+  )
+                                    
+                                    },
+                                  title: GetData(documentId:docIDs[index].id),
+                                );
+                              },
+
+                      )
+                  )
+                            
+                          
                 ],
               ),
             ),
@@ -146,7 +175,7 @@ class _CustomerDashboardState extends State<CustomerDashboard> {
                   BarIndicator(),
                   Center(
                     child: Text(
-                      "This is the collapsed Widget",
+                      "Slide Up",
                       style: TextStyle(color: Colors.white),
                     ),
                   ),
@@ -177,10 +206,11 @@ class _CustomerDashboardState extends State<CustomerDashboard> {
   buildFAB(BuildContext context) => FloatingActionButton(
         onPressed: () async {
           _determinePosition().then((value) async {
-            CameraPosition cameraPosition =
-                CameraPosition(target: LatLng(value.latitude, value.longitude),zoom: 11);
+            CameraPosition cameraPosition = CameraPosition(
+                target: LatLng(value.latitude, value.longitude), zoom: 11);
             final GoogleMapController controller = await _controller.future;
-            controller.animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
+            controller
+                .animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
           });
         },
         child: Icon(Icons.gps_fixed),
