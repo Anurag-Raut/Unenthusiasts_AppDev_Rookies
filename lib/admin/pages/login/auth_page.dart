@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:wastenot/admin/pages/login/adminlogin.dart';
 import 'package:wastenot/admin/pages/login/home_page.dart';
 
+import '../../Admin_dashBoard/admin_dashboard.dart';
+
 
 class AAuthPage extends StatefulWidget {
   const AAuthPage({super.key});
@@ -20,7 +22,7 @@ class _AuthPageState extends State<AAuthPage> {
         builder: (context, snapshot) {
           // user is logged in
           if (snapshot.hasData) {
-            return AHomePage();
+            return AdminDashBoard();
           }
 
           // user is NOT logged in
